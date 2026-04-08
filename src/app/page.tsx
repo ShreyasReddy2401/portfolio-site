@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { layout, prepare } from "@chenglou/pretext";
 import portfolio from "@/data/portfolio-data.json";
@@ -27,10 +27,12 @@ export default function Home() {
   const data = portfolio;
   const [menuOpen, setMenuOpen] = useState(false);
   const [snakeProgress, setSnakeProgress] = useState(0);
+  const [startSnakeAnimation, setStartSnakeAnimation] = useState(false);
   const [snakeTextMetrics, setSnakeTextMetrics] = useState<{
     lineCount: number;
     height: number;
   } | null>(null);
+  const snakeStageRef = useRef<HTMLDivElement | null>(null);
 
   const snakeCopy =
     "Python developer building resilient backend systems, cloud automation, and AI-powered workflows that scale without chaos.";
@@ -47,6 +49,34 @@ export default function Home() {
   ];
 
   useEffect(() => {
+    const target = snakeStageRef.current;
+    if (target === null) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setStartSnakeAnimation(true);
+            observer.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.45 },
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!startSnakeAnimation) {
+      return;
+    }
+
     let frameId = 0;
     const startedAt = performance.now();
     const durationMs = 2800;
@@ -63,7 +93,7 @@ export default function Home() {
 
     frameId = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frameId);
-  }, []);
+  }, [startSnakeAnimation]);
 
   useEffect(() => {
     const prepared = prepare(snakeCopy, "500 16px Sora, sans-serif", {
@@ -185,7 +215,7 @@ export default function Home() {
           <p className="section-copy max-w-3xl">{data.about.long}</p>
           <div className="about-interactive-grid mt-6">
             <article className="card">
-              <div className="snake-stage">
+              <div className="snake-stage" ref={snakeStageRef}>
                 <div className="snake-rail" />
                 <div className="snake-center-mark" />
                 <div
