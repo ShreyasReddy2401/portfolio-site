@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { layout, prepare } from "@chenglou/pretext";
 import portfolio from "@/data/portfolio-data.json";
 
@@ -29,6 +29,10 @@ export default function Home() {
     "I use Pretext to estimate line breaks and paragraph height before relying on DOM layout. This keeps interfaces responsive and predictable when content changes fast.",
   );
   const [pretextWidth, setPretextWidth] = useState(420);
+  const [pretextMetrics, setPretextMetrics] = useState<{
+    lineCount: number;
+    height: number;
+  } | null>(null);
 
   const navItems = [
     { href: "#about", label: "About" },
@@ -38,15 +42,11 @@ export default function Home() {
     { href: "#contact", label: "Contact" },
   ];
 
-  const pretextMetrics = useMemo(() => {
-    if (typeof window === "undefined") {
-      return { lineCount: 0, height: 0 };
-    }
-
+  useEffect(() => {
     const prepared = prepare(pretextInput, "500 16px Sora, sans-serif", {
       whiteSpace: "pre-wrap",
     });
-    return layout(prepared, pretextWidth, 28);
+    setPretextMetrics(layout(prepared, pretextWidth, 28));
   }, [pretextInput, pretextWidth]);
 
   return (
@@ -213,11 +213,13 @@ export default function Home() {
               <p className="meta-label">Computed Metrics</p>
               <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
                 <div className="stat">
-                  <p className="stat-number">{pretextMetrics.lineCount}</p>
+                  <p className="stat-number">{pretextMetrics?.lineCount ?? "--"}</p>
                   <p>Line Count</p>
                 </div>
                 <div className="stat">
-                  <p className="stat-number">{Math.round(pretextMetrics.height)}px</p>
+                  <p className="stat-number">
+                    {pretextMetrics === null ? "--" : `${Math.round(pretextMetrics.height)}px`}
+                  </p>
                   <p>Estimated Height</p>
                 </div>
               </div>
