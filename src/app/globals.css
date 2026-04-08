@@ -81,13 +81,6 @@ a {
   line-height: 1.9;
 }
 
-.inline-link {
-  color: #0f5078;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-}
-
 .card {
   border: 1px solid rgba(22, 33, 43, 0.1);
   border-radius: 1rem;
@@ -224,86 +217,6 @@ a {
   box-shadow: 0 10px 20px rgba(22, 33, 43, 0.12);
 }
 
-.about-interactive-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.snake-stage {
-  position: relative;
-  min-height: 290px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 1rem;
-  border: 1px dashed rgba(22, 33, 43, 0.18);
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.86), rgba(241, 249, 241, 0.9));
-}
-
-.snake-rail {
-  position: absolute;
-  top: 1.1rem;
-  bottom: 1.1rem;
-  width: 4px;
-  border-radius: 999px;
-  background: linear-gradient(to bottom, rgba(49, 133, 67, 0.18), rgba(49, 133, 67, 0.5));
-}
-
-.snake-center-mark {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  border-radius: 999px;
-  border: 1px solid rgba(49, 133, 67, 0.22);
-  background: rgba(134, 206, 137, 0.15);
-}
-
-.snake-sprite {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transition: transform 90ms linear;
-}
-
-.python-badge {
-  position: absolute;
-  bottom: 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(22, 33, 43, 0.16);
-  background: rgba(255, 255, 255, 0.76);
-  padding: 0.45rem 0.9rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #234334;
-  transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
-
-.python-badge-active {
-  background: #2d7d3e;
-  color: #f4fff6;
-  box-shadow: 0 12px 26px rgba(45, 125, 62, 0.35);
-  transform: translateY(-3px);
-}
-
-.python-copy-wrap {
-  overflow-x: auto;
-  padding-bottom: 0.3rem;
-}
-
-.python-copy {
-  border: 1px dashed rgba(22, 33, 43, 0.2);
-  border-radius: 0.9rem;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 0.9rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #1c2e3f;
-  transition: width 120ms linear, min-height 120ms linear;
-}
-
 .stagger-children > * {
   animation: rise-in 700ms ease both;
 }
@@ -336,11 +249,5 @@ a {
 
   .hero-pretext {
     font-size: 0.85rem;
-  }
-}
-
-@media (min-width: 900px) {
-  .about-interactive-grid {
-    grid-template-columns: 1fr 1fr;
   }
 }

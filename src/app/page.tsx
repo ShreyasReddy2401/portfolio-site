@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { layout, prepare } from "@chenglou/pretext";
+import { useState } from "react";
 import portfolio from "@/data/portfolio-data.json";
 
 type Experience = {
@@ -26,19 +24,6 @@ type Project = {
 export default function Home() {
   const data = portfolio;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [snakeProgress, setSnakeProgress] = useState(0);
-  const [startSnakeAnimation, setStartSnakeAnimation] = useState(false);
-  const [snakeTextMetrics, setSnakeTextMetrics] = useState<{
-    lineCount: number;
-    height: number;
-  } | null>(null);
-  const snakeStageRef = useRef<HTMLDivElement | null>(null);
-
-  const snakeCopy =
-    "Python developer building resilient backend systems, cloud automation, and AI-powered workflows that scale without chaos.";
-  const snakeCopyWidth = Math.round(260 + snakeProgress * 240);
-  const snakeOffsetY = Math.round(snakeProgress * 140);
-  const snakeCentered = snakeProgress >= 0.98;
 
   const navItems = [
     { href: "#about", label: "About" },
@@ -47,60 +32,6 @@ export default function Home() {
     { href: "#skills", label: "Skills" },
     { href: "#contact", label: "Contact" },
   ];
-
-  useEffect(() => {
-    const target = snakeStageRef.current;
-    if (target === null) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setStartSnakeAnimation(true);
-            observer.disconnect();
-            break;
-          }
-        }
-      },
-      { threshold: 0.45 },
-    );
-
-    observer.observe(target);
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!startSnakeAnimation) {
-      return;
-    }
-
-    let frameId = 0;
-    const startedAt = performance.now();
-    const durationMs = 2800;
-
-    const tick = (now: number) => {
-      const rawProgress = Math.min((now - startedAt) / durationMs, 1);
-      const eased = 1 - (1 - rawProgress) ** 3;
-      setSnakeProgress(eased);
-
-      if (rawProgress < 1) {
-        frameId = window.requestAnimationFrame(tick);
-      }
-    };
-
-    frameId = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(frameId);
-  }, [startSnakeAnimation]);
-
-  useEffect(() => {
-    const prepared = prepare(snakeCopy, "500 16px Sora, sans-serif", {
-      whiteSpace: "normal",
-    });
-    setSnakeTextMetrics(layout(prepared, snakeCopyWidth, 28));
-  }, [snakeCopy, snakeCopyWidth]);
 
   return (
     <div className="relative overflow-hidden">
@@ -213,72 +144,6 @@ export default function Home() {
           <p className="section-pretext">Who I am</p>
           <h2 className="section-title">About Me</h2>
           <p className="section-copy max-w-3xl">{data.about.long}</p>
-          <div className="about-interactive-grid mt-6">
-            <article className="card">
-              <div className="snake-stage" ref={snakeStageRef}>
-                <div className="snake-rail" />
-                <div className="snake-center-mark" />
-                <div
-                  className="snake-sprite"
-                  style={{ transform: `translate(-50%, ${snakeOffsetY}px)` }}
-                >
-                  <Image
-                    alt="Python snake illustration"
-                    height={180}
-                    priority
-                    src="/python-snake.svg"
-                    width={270}
-                  />
-                </div>
-                <p className={`python-badge ${snakeCentered ? "python-badge-active" : ""}`}>
-                  Python Developer
-                </p>
-              </div>
-            </article>
-            <article className="card">
-              <p className="meta-label">
-                About copy tuned by
-                {" "}
-                <a
-                  className="inline-link"
-                  href="https://github.com/chenglou/pretext"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  pretext
-                </a>
-              </p>
-              <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
-                <div className="stat">
-                  <p className="stat-number">{snakeCopyWidth}px</p>
-                  <p>Text Width</p>
-                </div>
-                <div className="stat">
-                  <p className="stat-number">{snakeTextMetrics?.lineCount ?? "--"}</p>
-                  <p>Line Count</p>
-                </div>
-                <div className="stat">
-                  <p className="stat-number">
-                    {snakeTextMetrics === null ? "--" : `${Math.round(snakeTextMetrics.height)}px`}
-                  </p>
-                  <p>Height</p>
-                </div>
-              </div>
-              <div className="python-copy-wrap mt-4">
-                <p
-                  className="python-copy"
-                  style={{
-                    lineHeight: "28px",
-                    minHeight:
-                      snakeTextMetrics === null ? "auto" : `${Math.round(snakeTextMetrics.height)}px`,
-                    width: `${snakeCopyWidth}px`,
-                  }}
-                >
-                  {snakeCopy}
-                </p>
-              </div>
-            </article>
-          </div>
         </section>
 
         <section id="experience" className="section">
