@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { layout, prepare } from "@chenglou/pretext";
 import portfolio from "@/data/portfolio-data.json";
 
 type Experience = {
@@ -24,6 +25,10 @@ type Project = {
 export default function Home() {
   const data = portfolio;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [pretextInput, setPretextInput] = useState(
+    "I use Pretext to estimate line breaks and paragraph height before relying on DOM layout. This keeps interfaces responsive and predictable when content changes fast.",
+  );
+  const [pretextWidth, setPretextWidth] = useState(420);
 
   const navItems = [
     { href: "#about", label: "About" },
@@ -32,6 +37,17 @@ export default function Home() {
     { href: "#skills", label: "Skills" },
     { href: "#contact", label: "Contact" },
   ];
+
+  const pretextMetrics = useMemo(() => {
+    if (typeof window === "undefined") {
+      return { lineCount: 0, height: 0 };
+    }
+
+    const prepared = prepare(pretextInput, "500 16px Sora, sans-serif", {
+      whiteSpace: "pre-wrap",
+    });
+    return layout(prepared, pretextWidth, 28);
+  }, [pretextInput, pretextWidth]);
 
   return (
     <div className="relative overflow-hidden">
@@ -144,6 +160,81 @@ export default function Home() {
           <p className="section-pretext">Who I am</p>
           <h2 className="section-title">About Me</h2>
           <p className="section-copy">{data.about.long}</p>
+        </section>
+
+        <section id="pretext-lab" className="section">
+          <p className="section-pretext">Interactive typography</p>
+          <h2 className="section-title">Pretext Lab</h2>
+          <p className="section-copy max-w-3xl">
+            This section is powered by
+            {" "}
+            <a
+              className="inline-link"
+              href="https://github.com/chenglou/pretext"
+              rel="noreferrer"
+              target="_blank"
+            >
+              @chenglou/pretext
+            </a>
+            {" "}
+            and computes line count plus paragraph height in real time.
+          </p>
+
+          <div className="pretext-grid mt-6">
+            <article className="card">
+              <label className="meta-label" htmlFor="pretext-input">
+                Try your own text
+              </label>
+              <textarea
+                className="pretext-input mt-3"
+                id="pretext-input"
+                onChange={(event) => setPretextInput(event.target.value)}
+                rows={6}
+                value={pretextInput}
+              />
+
+              <div className="mt-5">
+                <div className="flex items-center justify-between text-xs text-[var(--muted)]">
+                  <span>Preview Width</span>
+                  <span>{pretextWidth}px</span>
+                </div>
+                <input
+                  className="pretext-slider mt-2"
+                  max={700}
+                  min={220}
+                  onChange={(event) => setPretextWidth(Number(event.target.value))}
+                  type="range"
+                  value={pretextWidth}
+                />
+              </div>
+            </article>
+
+            <article className="card">
+              <p className="meta-label">Computed Metrics</p>
+              <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+                <div className="stat">
+                  <p className="stat-number">{pretextMetrics.lineCount}</p>
+                  <p>Line Count</p>
+                </div>
+                <div className="stat">
+                  <p className="stat-number">{Math.round(pretextMetrics.height)}px</p>
+                  <p>Estimated Height</p>
+                </div>
+              </div>
+
+              <div className="pretext-preview-wrap mt-4">
+                <div
+                  className="pretext-preview"
+                  style={{
+                    width: `${pretextWidth}px`,
+                    lineHeight: "28px",
+                  }}
+                >
+                  {pretextInput}
+                </div>
+              </div>
+            </article>
+          </div>
         </section>
 
         <section id="experience" className="section">
