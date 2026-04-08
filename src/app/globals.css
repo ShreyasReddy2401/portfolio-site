@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f6f0e8;
-  --surface: #fffaf4;
-  --ink: #17212b;
-  --muted: #485b6b;
-  --accent: #bd4b2f;
-  --accent-soft: #f2d6c8;
+  --bg: #0b0d10;
+  --surface: #13171c;
+  --ink: #e6edf3;
+  --muted: #9aa6b2;
+  --accent: #58a6ff;
+  --accent-soft: #1f6feb33;
 }
 
 @theme inline {
@@ -17,8 +17,8 @@
 }
 
 body {
-  background: radial-gradient(1200px 600px at 15% -10%, #efd4b6 0%, transparent 55%),
-    radial-gradient(1200px 700px at 90% 0%, #d5e6ef 0%, transparent 58%), var(--bg);
+  background: radial-gradient(1200px 600px at 12% -8%, #1f2a3a 0%, transparent 54%),
+    radial-gradient(1100px 760px at 88% 4%, #1a2d24 0%, transparent 58%), var(--bg);
   color: var(--ink);
   font-family: var(--font-main), "Avenir Next", "Segoe UI", sans-serif;
   scroll-behavior: smooth;
@@ -29,8 +29,8 @@ a {
 }
 
 .bg-grid {
-  background-image: linear-gradient(to right, rgba(22, 33, 43, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(22, 33, 43, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(230, 237, 243, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 237, 243, 0.06) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -47,13 +47,13 @@ a {
 .blob-one {
   top: 5rem;
   right: -6rem;
-  background: #f0bca5;
+  background: #3b82f6;
 }
 
 .blob-two {
   top: 24rem;
   left: -8rem;
-  background: #b7d1e0;
+  background: #22c55e;
 }
 
 .section {
@@ -82,11 +82,11 @@ a {
 }
 
 .card {
-  border: 1px solid rgba(22, 33, 43, 0.1);
+  border: 1px solid rgba(230, 237, 243, 0.1);
   border-radius: 1rem;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 250, 244, 0.95));
+  background: linear-gradient(160deg, rgba(19, 23, 28, 0.96), rgba(13, 17, 23, 0.98));
   padding: 1.25rem;
-  box-shadow: 0 16px 36px rgba(22, 33, 43, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
 }
 
 .card-hover {
@@ -99,14 +99,14 @@ a {
 }
 
 .timeline-card {
-  border-left: 5px solid rgba(189, 75, 47, 0.45);
+  border-left: 5px solid rgba(88, 166, 255, 0.5);
 }
 
 .tag {
   width: fit-content;
   border-radius: 999px;
-  border: 1px solid rgba(22, 33, 43, 0.14);
-  background: rgba(255, 250, 244, 0.75);
+  border: 1px solid rgba(230, 237, 243, 0.18);
+  background: rgba(88, 166, 255, 0.14);
   padding: 0.35rem 0.7rem;
   font-size: 0.7rem;
   letter-spacing: 0.12em;
@@ -122,11 +122,11 @@ a {
 
 .chip {
   border-radius: 999px;
-  border: 1px solid rgba(22, 33, 43, 0.16);
-  background: #ffffff;
+  border: 1px solid rgba(230, 237, 243, 0.2);
+  background: #11161d;
   padding: 0.25rem 0.6rem;
   font-size: 0.75rem;
-  color: #1b2e40;
+  color: #e6edf3;
 }
 
 .btn {
@@ -145,12 +145,12 @@ a {
 
 .btn-primary {
   background: var(--accent);
-  color: #fff7f2;
-  box-shadow: 0 12px 24px rgba(189, 75, 47, 0.35);
+  color: #0b0d10;
+  box-shadow: 0 12px 24px rgba(31, 111, 235, 0.35);
 }
 
 .btn-secondary {
-  border: 1px solid rgba(22, 33, 43, 0.18);
+  border: 1px solid rgba(230, 237, 243, 0.2);
   background: var(--surface);
   color: var(--ink);
 }
@@ -177,31 +177,31 @@ a {
 
 .mobile-nav-link {
   border-radius: 0.75rem;
-  border: 1px solid rgba(22, 33, 43, 0.12);
-  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(230, 237, 243, 0.2);
+  background: rgba(19, 23, 28, 0.9);
   padding: 0.65rem 0.9rem;
   font-size: 0.86rem;
 }
 
 .hero-pretext {
   max-width: 48rem;
-  border-left: 3px solid rgba(189, 75, 47, 0.45);
+  border-left: 3px solid rgba(88, 166, 255, 0.55);
   padding-left: 0.8rem;
   font-size: 0.9rem;
   color: var(--muted);
 }
 
 .stat {
-  border: 1px solid rgba(22, 33, 43, 0.12);
+  border: 1px solid rgba(230, 237, 243, 0.12);
   border-radius: 0.8rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(19, 23, 28, 0.7);
   padding: 0.5rem 0.35rem;
 }
 
 .stat-number {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0d2738;
+  color: #e6edf3;
 }
 
 .back-to-top {
@@ -210,11 +210,11 @@ a {
   bottom: 1rem;
   z-index: 30;
   border-radius: 999px;
-  border: 1px solid rgba(22, 33, 43, 0.16);
+  border: 1px solid rgba(230, 237, 243, 0.2);
   background: var(--surface);
   padding: 0.45rem 0.75rem;
   font-size: 0.78rem;
-  box-shadow: 0 10px 20px rgba(22, 33, 43, 0.12);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .stagger-children > * {
