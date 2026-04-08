@@ -1,0 +1,28 @@
+<svg width="360" height="240" viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="snakeBody" x1="40" y1="40" x2="300" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4AAE5A"/>
+      <stop offset="1" stop-color="#2A7B39"/>
+    </linearGradient>
+    <linearGradient id="snakeBelly" x1="120" y1="80" x2="250" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BEE89A"/>
+      <stop offset="1" stop-color="#97D477"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M38 145C38 100 72 76 114 76C160 76 177 102 200 116C224 130 241 126 262 114C289 98 320 100 334 121C350 145 342 176 317 191C288 209 248 205 223 187C197 168 183 143 150 138C121 134 98 155 102 181C106 206 129 218 154 218" stroke="url(#snakeBody)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M60 142C60 110 84 92 114 92C149 92 165 112 188 126C207 138 224 140 245 132C267 123 293 125 304 141C315 157 309 178 292 188C270 201 241 198 220 183C195 165 181 152 156 151C134 151 122 167 124 185C126 199 138 207 152 207" stroke="url(#snakeBelly)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <ellipse cx="84" cy="88" rx="27" ry="25" fill="#3B9A4A"/>
+  <ellipse cx="77" cy="88" rx="8" ry="7" fill="#F2F8F2"/>
+  <ellipse cx="92" cy="88" rx="8" ry="7" fill="#F2F8F2"/>
+  <circle cx="78" cy="88" r="3" fill="#1F3422"/>
+  <circle cx="93" cy="88" r="3" fill="#1F3422"/>
+
+  <path d="M85 96C86 102 89 107 94 110" stroke="#295C32" stroke-width="3" stroke-linecap="round"/>
+  <path d="M67 103C73 107 82 108 90 106" stroke="#295C32" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M60 95C45 86 35 73 36 57" stroke="#2F7D3C" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="35" cy="54" r="5" fill="#2F7D3C"/>
+</svg>

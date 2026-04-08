@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { layout, prepare } from "@chenglou/pretext";
 import portfolio from "@/data/portfolio-data.json";
 
@@ -25,14 +26,17 @@ type Project = {
 export default function Home() {
   const data = portfolio;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [pretextInput, setPretextInput] = useState(
-    "I use Pretext to estimate line breaks and paragraph height before relying on DOM layout. This keeps interfaces responsive and predictable when content changes fast.",
-  );
-  const [pretextWidth, setPretextWidth] = useState(420);
-  const [pretextMetrics, setPretextMetrics] = useState<{
+  const [snakeProgress, setSnakeProgress] = useState(0);
+  const [snakeTextMetrics, setSnakeTextMetrics] = useState<{
     lineCount: number;
     height: number;
   } | null>(null);
+
+  const snakeCopy =
+    "Python developer building resilient backend systems, cloud automation, and AI-powered workflows that scale without chaos.";
+  const snakeCopyWidth = Math.round(260 + snakeProgress * 240);
+  const snakeOffsetY = Math.round((1 - snakeProgress) * -170);
+  const snakeCentered = snakeProgress >= 0.98;
 
   const navItems = [
     { href: "#about", label: "About" },
@@ -43,11 +47,30 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    const prepared = prepare(pretextInput, "500 16px Sora, sans-serif", {
-      whiteSpace: "pre-wrap",
+    let frameId = 0;
+    const startedAt = performance.now();
+    const durationMs = 2800;
+
+    const tick = (now: number) => {
+      const rawProgress = Math.min((now - startedAt) / durationMs, 1);
+      const eased = 1 - (1 - rawProgress) ** 3;
+      setSnakeProgress(eased);
+
+      if (rawProgress < 1) {
+        frameId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
+
+  useEffect(() => {
+    const prepared = prepare(snakeCopy, "500 16px Sora, sans-serif", {
+      whiteSpace: "normal",
     });
-    setPretextMetrics(layout(prepared, pretextWidth, 28));
-  }, [pretextInput, pretextWidth]);
+    setSnakeTextMetrics(layout(prepared, snakeCopyWidth, 28));
+  }, [snakeCopy, snakeCopyWidth]);
 
   return (
     <div className="relative overflow-hidden">
@@ -162,11 +185,11 @@ export default function Home() {
           <p className="section-copy">{data.about.long}</p>
         </section>
 
-        <section id="pretext-lab" className="section">
-          <p className="section-pretext">Interactive typography</p>
-          <h2 className="section-title">Pretext Lab</h2>
+        <section id="python-motion" className="section">
+          <p className="section-pretext">Interactive motion</p>
+          <h2 className="section-title">Python Developer Signal</h2>
           <p className="section-copy max-w-3xl">
-            This section is powered by
+            A Python snake moves from top to center and stops. As it moves,
             {" "}
             <a
               className="inline-link"
@@ -174,66 +197,67 @@ export default function Home() {
               rel="noreferrer"
               target="_blank"
             >
-              @chenglou/pretext
+              pretext
             </a>
             {" "}
-            and computes line count plus paragraph height in real time.
+            recomputes text layout in real time so the copy adapts interactively.
           </p>
 
-          <div className="pretext-grid mt-6">
+          <div className="python-motion-grid mt-6">
             <article className="card">
-              <label className="meta-label" htmlFor="pretext-input">
-                Try your own text
-              </label>
-              <textarea
-                className="pretext-input mt-3"
-                id="pretext-input"
-                onChange={(event) => setPretextInput(event.target.value)}
-                rows={6}
-                value={pretextInput}
-              />
-
-              <div className="mt-5">
-                <div className="flex items-center justify-between text-xs text-[var(--muted)]">
-                  <span>Preview Width</span>
-                  <span>{pretextWidth}px</span>
+              <div className="snake-stage">
+                <div className="snake-rail" />
+                <div className="snake-center-mark" />
+                <div
+                  className="snake-sprite"
+                  style={{ transform: `translate(-50%, ${snakeOffsetY}px)` }}
+                >
+                  <Image
+                    alt="Python snake illustration"
+                    height={180}
+                    priority
+                    src="/python-snake.svg"
+                    width={270}
+                  />
                 </div>
-                <input
-                  className="pretext-slider mt-2"
-                  max={700}
-                  min={220}
-                  onChange={(event) => setPretextWidth(Number(event.target.value))}
-                  type="range"
-                  value={pretextWidth}
-                />
+
+                <p className={`python-badge ${snakeCentered ? "python-badge-active" : ""}`}>
+                  Python Developer
+                </p>
               </div>
             </article>
 
             <article className="card">
-              <p className="meta-label">Computed Metrics</p>
-              <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+              <p className="meta-label">Live Pretext Layout</p>
+              <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
                 <div className="stat">
-                  <p className="stat-number">{pretextMetrics?.lineCount ?? "--"}</p>
+                  <p className="stat-number">{snakeCopyWidth}px</p>
+                  <p>Dynamic Width</p>
+                </div>
+                <div className="stat">
+                  <p className="stat-number">{snakeTextMetrics?.lineCount ?? "--"}</p>
                   <p>Line Count</p>
                 </div>
                 <div className="stat">
                   <p className="stat-number">
-                    {pretextMetrics === null ? "--" : `${Math.round(pretextMetrics.height)}px`}
+                    {snakeTextMetrics === null ? "--" : `${Math.round(snakeTextMetrics.height)}px`}
                   </p>
                   <p>Estimated Height</p>
                 </div>
               </div>
 
-              <div className="pretext-preview-wrap mt-4">
-                <div
-                  className="pretext-preview"
+              <div className="python-copy-wrap mt-4">
+                <p
+                  className="python-copy"
                   style={{
-                    width: `${pretextWidth}px`,
                     lineHeight: "28px",
+                    minHeight:
+                      snakeTextMetrics === null ? "auto" : `${Math.round(snakeTextMetrics.height)}px`,
+                    width: `${snakeCopyWidth}px`,
                   }}
                 >
-                  {pretextInput}
-                </div>
+                  {snakeCopy}
+                </p>
               </div>
             </article>
           </div>
