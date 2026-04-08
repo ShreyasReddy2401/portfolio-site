@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import portfolio from "@/data/portfolio-data.json";
 
@@ -105,16 +104,6 @@ export default function Home() {
             <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
               Snapshot
             </p>
-            <div className="mt-4 overflow-hidden rounded-2xl border border-black/10 bg-white/60">
-              <Image
-                alt="AI-generated illustration of a boy coding on a desktop computer"
-                className="h-auto w-full"
-                height={450}
-                priority
-                src="/ai-boy-coding.svg"
-                width={600}
-              />
-            </div>
             <div className="mt-4 space-y-4 text-sm">
               <p>
                 <span className="meta-label">Location</span>
