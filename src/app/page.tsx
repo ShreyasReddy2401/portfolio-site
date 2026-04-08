@@ -35,7 +35,7 @@ export default function Home() {
   const snakeCopy =
     "Python developer building resilient backend systems, cloud automation, and AI-powered workflows that scale without chaos.";
   const snakeCopyWidth = Math.round(260 + snakeProgress * 240);
-  const snakeOffsetY = Math.round((1 - snakeProgress) * -170);
+  const snakeOffsetY = Math.round(snakeProgress * 140);
   const snakeCentered = snakeProgress >= 0.98;
 
   const navItems = [
@@ -182,28 +182,8 @@ export default function Home() {
         <section id="about" className="section">
           <p className="section-pretext">Who I am</p>
           <h2 className="section-title">About Me</h2>
-          <p className="section-copy">{data.about.long}</p>
-        </section>
-
-        <section id="python-motion" className="section">
-          <p className="section-pretext">Interactive motion</p>
-          <h2 className="section-title">Python Developer Signal</h2>
-          <p className="section-copy max-w-3xl">
-            A Python snake moves from top to center and stops. As it moves,
-            {" "}
-            <a
-              className="inline-link"
-              href="https://github.com/chenglou/pretext"
-              rel="noreferrer"
-              target="_blank"
-            >
-              pretext
-            </a>
-            {" "}
-            recomputes text layout in real time so the copy adapts interactively.
-          </p>
-
-          <div className="python-motion-grid mt-6">
+          <p className="section-copy max-w-3xl">{data.about.long}</p>
+          <div className="about-interactive-grid mt-6">
             <article className="card">
               <div className="snake-stage">
                 <div className="snake-rail" />
@@ -220,19 +200,28 @@ export default function Home() {
                     width={270}
                   />
                 </div>
-
                 <p className={`python-badge ${snakeCentered ? "python-badge-active" : ""}`}>
                   Python Developer
                 </p>
               </div>
             </article>
-
             <article className="card">
-              <p className="meta-label">Live Pretext Layout</p>
+              <p className="meta-label">
+                About copy tuned by
+                {" "}
+                <a
+                  className="inline-link"
+                  href="https://github.com/chenglou/pretext"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  pretext
+                </a>
+              </p>
               <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
                 <div className="stat">
                   <p className="stat-number">{snakeCopyWidth}px</p>
-                  <p>Dynamic Width</p>
+                  <p>Text Width</p>
                 </div>
                 <div className="stat">
                   <p className="stat-number">{snakeTextMetrics?.lineCount ?? "--"}</p>
@@ -242,10 +231,9 @@ export default function Home() {
                   <p className="stat-number">
                     {snakeTextMetrics === null ? "--" : `${Math.round(snakeTextMetrics.height)}px`}
                   </p>
-                  <p>Estimated Height</p>
+                  <p>Height</p>
                 </div>
               </div>
-
               <div className="python-copy-wrap mt-4">
                 <p
                   className="python-copy"

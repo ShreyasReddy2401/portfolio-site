@@ -224,7 +224,7 @@ a {
   box-shadow: 0 10px 20px rgba(22, 33, 43, 0.12);
 }
 
-.python-motion-grid {
+.about-interactive-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -263,7 +263,8 @@ a {
 .snake-sprite {
   position: absolute;
   left: 50%;
-  transition: transform 120ms linear;
+  top: 0;
+  transition: transform 90ms linear;
 }
 
 .python-badge {
@@ -339,7 +340,7 @@ a {
 }
 
 @media (min-width: 900px) {
-  .python-motion-grid {
+  .about-interactive-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
