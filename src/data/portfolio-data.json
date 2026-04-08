@@ -1,0 +1,138 @@
+{
+  "profile": {
+    "name": "Shreyas Reddy Gaddampally",
+    "headline": "Software Engineer and Distributed Systems Enthusiast",
+    "subheadline": "Building scalable cloud platforms, intelligent automation, and fault-tolerant systems.",
+    "email": "shreyasreddy.gaddampally@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/shreyasreddy-gaddampally",
+    "location": "Stony Brook, NY"
+  },
+  "about": {
+    "short": "I am a Computer Science graduate student at Stony Brook University with hands-on experience building cloud-native automation, AI-powered workflows, and distributed systems.",
+    "long": "I am currently pursuing a Master of Science in Computer Science at Stony Brook University, where I focus on distributed systems, machine learning, and cloud-scale engineering. During my internship at EchoStar, I built automation systems and governance controls that helped prevent over 4 million dollars in projected AWS spend, while also shipping AI-assisted internal workflows that reduced manual effort across teams. I have also worked as a Research Project Assistant at PoliTech Labs, where I improved query performance and deployment velocity by modernizing data architecture and CI/CD pipelines. My project work includes consensus-based distributed banking platforms using Linear PBFT and Multi-Paxos with 2PC, as well as LLM-powered retrieval systems for semantic search across large document collections."
+  },
+  "education": [
+    {
+      "institution": "Stony Brook University",
+      "degree": "Master of Science in Computer Science",
+      "start": "2024-08",
+      "end": "2026-05",
+      "location": "Stony Brook, NY",
+      "coursework": [
+        "Distributed Systems",
+        "Computer Vision",
+        "Visualization",
+        "Machine Learning",
+        "Generative AI"
+      ]
+    },
+    {
+      "institution": "Jawaharlal Nehru Technological University",
+      "degree": "Bachelor of Technology in Computer Science and Engineering",
+      "start": "2020-12",
+      "end": "2024-05",
+      "location": "Hyderabad, India"
+    }
+  ],
+  "experience": [
+    {
+      "company": "EchoStar Corporation",
+      "role": "Software Engineer Intern",
+      "team": "Boost Mobile - 5G Public Cloud Team",
+      "start": "2025-05",
+      "end": "2025-08",
+      "location": "Denver, Colorado",
+      "highlights": [
+        "Built Python and TypeScript automations and 150+ cloud governance policies across multi-account AWS, preventing 4M+ USD in projected spend.",
+        "Developed production AI agents with IBM watsonx Orchestrate, AWS Bedrock, and LangChain, saving about 40K USD per use case.",
+        "Built RBAC-secured React applications for 20K+ compliance and network reports, reducing operational overhead by 70%+."
+      ],
+      "tech": [
+        "Python",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "Redis",
+        "Kafka"
+      ]
+    },
+    {
+      "company": "PoliTech Labs",
+      "role": "Research Project Assistant",
+      "start": "2025-01",
+      "end": "2025-12",
+      "location": "Stony Brook, NY",
+      "highlights": [
+        "Migrated data architecture from PostgreSQL to MongoDB, improving query performance by 45% on 20K+ records.",
+        "Improved UI discoverability with React and D3 interactive filtering, increasing user satisfaction by 30%.",
+        "Automated CI/CD using GitHub Actions, Docker, and Kubernetes, reducing manual deployment effort by 75%."
+      ],
+      "tech": [
+        "Python",
+        "Spring Boot",
+        "React",
+        "D3.js",
+        "MongoDB",
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Distributed Banking Application with Linear PBFT",
+      "stack": ["Go", "gRPC", "SQLite3", "Distributed Systems"],
+      "summary": "Built a 7-node fault-tolerant banking platform using PBFT with under 80 ms latency and support for 500+ concurrent transactions.",
+      "bullets": [
+        "Designed a Linear-PBFT protocol for secure validation at scale.",
+        "Implemented full PBFT lifecycle including view-change and signed message validation."
+      ]
+    },
+    {
+      "name": "Distributed Banking System (Multi-Paxos + 2PC)",
+      "stack": ["Go", "gRPC", "PostgreSQL", "Distributed Systems"],
+      "summary": "Architected a 9-node distributed banking system with strong consistency and fault-tolerant failover.",
+      "bullets": [
+        "Implemented cross-shard atomic transactions via 2PC over Paxos-replicated phases.",
+        "Added WAL durability and sub-2 second recovery goals.",
+        "Improved scalability by 35% using shard redistribution and benchmark-driven tuning."
+      ]
+    },
+    {
+      "name": "Domain-Specific LLM Document Retrieval System",
+      "stack": ["Python", "LangChain", "OpenAI API", "FAISS", "Flask", "Docker"],
+      "summary": "Built semantic QA across 100K+ documents with sub-1 second retrieval and improved factual accuracy through RAG.",
+      "bullets": [
+        "Implemented embedding and retrieval pipeline with FAISS.",
+        "Deployed scalable RAG service on Google Cloud Run."
+      ]
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "Go", "Java", "C++", "JavaScript", "TypeScript", "SQL"],
+    "frontend": ["React", "Next.js", "Angular", "Vue", "HTML", "CSS", "Redux"],
+    "backend": ["Node.js", "Spring Boot", "Django", "REST", "GraphQL"],
+    "databases": ["PostgreSQL", "MySQL", "MongoDB", "DynamoDB", "Redis"],
+    "cloud_devops": ["AWS", "Docker", "Kubernetes", "Jenkins", "CI/CD"],
+    "ai_data": ["LangChain", "FAISS", "TensorFlow", "PyTorch", "Pandas", "NumPy", "PySpark"]
+  },
+  "seo": {
+    "title": "Shreyas Reddy Gaddampally | Software Engineer Portfolio",
+    "description": "Portfolio featuring distributed systems projects, cloud engineering experience, and AI-driven solutions.",
+    "keywords": [
+      "software engineer",
+      "distributed systems",
+      "cloud automation",
+      "AWS",
+      "Go",
+      "Python",
+      "AI",
+      "portfolio"
+    ]
+  }
+}
